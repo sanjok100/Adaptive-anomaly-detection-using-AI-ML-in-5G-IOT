@@ -15,14 +15,14 @@ The goal is to build a model that can adapt to changing network traffic patterns
 
  Workflow Pipeline
 1) Data Preprocessing
--Missing values are handled (median/mode filling)
--Categorical features are one-hot encoded
--Binary labels are created (0 = Benign, 1 = Attack)
+Missing values are handled (median/mode filling).
+Categorical features are one-hot encoded.
+Binary labels are created (0 = Benign, 1 = Attack).
 
 2) Feature Selection
--ANOVA F-test is used
--Top 10 most important features are selected
--This reduces dimensionality and improves model efficiency.
+ANOVA F-test is used.
+Top 10 most important features are selected.
+This reduces dimensionality and improves model efficiency.
 
 3) Train / Validation / Test Split
 -80% training/10% validation/10% test
@@ -34,7 +34,7 @@ The goal is to build a model that can adapt to changing network traffic patterns
 5) Data Normalization
 -StandardScaler is applied to normalize feature values.
 
-6️) MLP Model Architecture
+6) MLP Model Architecture
 The neural network contains:
        -Input layer
        -Dense layer (32 neurons, ReLU)
