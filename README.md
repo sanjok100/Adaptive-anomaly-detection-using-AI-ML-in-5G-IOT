@@ -28,11 +28,7 @@ The goal is to build a model that can adapt to changing network traffic patterns
 
 7) Hyperparameter Tuning: GridSearchCV with 5-fold cross-validation is used to find the best: Optimizer (Adam / RMSprop), Learning rate, Dropout rate, Batch size
 
-8) Adaptive System Components: After training, the system becomes adaptive:
-   
-   A) Adaptive Threshold: Instead of using a fixed 0.5 threshold, the decision threshold adjusts dynamically based on recent prediction confidence.
-
-   B) Concept Drift Detection: ADWIN monitors prediction errors over time. If drift is detected the model is retrained using the most recent 500 samples and the system adapts to new traffic patterns
+8) Adaptive System Components: After the initial training, the system runs in a simulated streaming mode where predictions are processed one by one. Instead of always using a fixed decision threshold of 0.5, the model adjusts the threshold dynamically based on the recent prediction probabilities stored in a sliding window. If enough recent predictions are available, the threshold is calculated using the mean and standard deviation of those probabilities. That makes the decision boundary adapt to changes in confidence levels. At the same time, the system continuously monitors prediction errors using the ADWIN drift detection algorithm. For each sample, it checks whether the prediction was correct or incorrect and feeds this information to ADWIN. If ADWIN detects a significant change in the error pattern (indicating possible concept drift), the model is fine-tuned using the most recent 500 labeled samples. This allows the system to adjust to evolving network traffic patterns and maintain performance over time.
 
 10) Evaluation: The system reports Accuracy, Classification report (Precision, Recall, F1-score) and Confusion matrix (normalized and raw counts)
 
