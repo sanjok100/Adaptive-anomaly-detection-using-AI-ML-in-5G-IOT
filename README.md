@@ -51,17 +51,17 @@ The neural network contains:
     -Batch size
 
 8) Adaptive System Components
-After training, the system becomes adaptive:
-A) Adaptive Threshold
-Instead of using a fixed 0.5 threshold, the decision threshold adjusts dynamically based on recent prediction confidence.
+  After training, the system becomes adaptive:
+   A) Adaptive Threshold
+      Instead of using a fixed 0.5 threshold, the decision threshold adjusts dynamically based on recent prediction confidence.
 
-B) Concept Drift Detection
--ADWIN monitors prediction errors over time.
--If drift is detected:
-   The model is retrained using the most recent 500 samples
-   The system adapts to new traffic patterns
+   B) Concept Drift Detection
+      -ADWIN monitors prediction errors over time.
+      -If drift is detected:
+         The model is retrained using the most recent 500 samples
+         The system adapts to new traffic patterns
 
- 9) Evaluation
+9) Evaluation
 The system reports:
    -Accuracy
    -Classification report (Precision, Recall, F1-score)
@@ -80,9 +80,15 @@ The system reports:
    -NumPy
 
 -----How to Run-----
-  -Upload dataset (Combined.csv) to Google Drive.
+  -Upload dataset (Combined.csv) to Google Drive: The dataset is not included in the repository due to size limitations. Please download the 5G-NIDD dataset and place Combined.csv inside your Google Drive before     running the notebook. 'https://www.kaggle.com/datasets/humera11/5g-nidd-dataset'
   -Open notebook in Google Colab.
+  -Mount Drive.
+  -Run all cells sequentially.
 
-Mount Drive.
-
-Run all cells sequentially.
+------Expected Output------
+The notebook will output:
+-Best hyperparameters from GridSearch
+-Cross-validation accuracy
+-Adaptive test accuracy
+-Classification report
+-Confusion matrices (normalized and raw)
