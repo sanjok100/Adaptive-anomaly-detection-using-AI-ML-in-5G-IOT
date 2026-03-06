@@ -73,17 +73,11 @@ Categorical attributes such as protocol or connection state are converted using 
 
 7) MLP Model Architecture
 The classification model is implemented using a Multi-Layer Perceptron (MLP) neural network.
-Architecture:
-Input Layer – Selected feature vector
-Dense Layer – 32 neurons with ReLU activation
-Dropout Layer – Prevents overfitting
-Dense Layer – 16 neurons with ReLU activation
-Output Layer – Softmax activation for multi-class prediction
-The model uses Sparse Categorical Cross-Entropy as the loss function.
+Architecture include Input Layer, Dense Layer(32 neurons with ReLU activation) ,Dropout Layer, Dense Layer (16 neurons with ReLU activation) and Output Layer (Softmax activation for multi-class prediction). The model uses Sparse Categorical Cross-Entropy as the loss function.
 
-8) Hyperparameter Tuning: To optimize model performance, GridSearchCV with 5-fold Stratified Cross-Validation is used.
+9) Hyperparameter Tuning: To optimize model performance, GridSearchCV with 5-fold Stratified Cross-Validation is used.
 
-9) Model Evaluation:The trained model is evaluated on the unseen test dataset.
+10) Model Evaluation:The trained model is evaluated on the unseen test dataset.
 Performance metrics include: Accuracy,Precision, Recall, F1-score and two confusion matrices are generated.
 
 Objective: The purpose of this stage is to categorize malicious network traffic into broader attack groups, enabling more structured analysis of cyber threats. By grouping attacks into categories such as DoS, Scan, and SlowrateDoS, the system can better understand the general behavior of malicious traffic before performing detailed attack-type classification.
@@ -96,12 +90,19 @@ Objective: The purpose of this stage is to categorize malicious network traffic 
 --------level 3 Multi-class Attack type Classification--------
 
 The system performs:
+
 1)Attack traffic filtering ((9 differrent attack types)
+
 2)Feature selection using ANOVA
+
 3)Class balancing using oversampling and downsampling
+
 4)Multi-class classification using MLP
+
 5)Hyperparameter tuning using GridSearch + K-Fold cross-validation
+
 6)Model evaluation using classification metrics and confusion matrices
+
 The goal is to identify the exact type of network attack after traffic has already been detected as malicious.
 
 Workflow Pipeline
@@ -120,13 +121,7 @@ Categorical attributes such as protocol or connection state are converted using 
 
 7) MLP Model Architecture
 The classification model is implemented using a Multi-Layer Perceptron (MLP) neural network.
-Architecture:
-Input Layer – Selected feature vector
-Dense Layer – 32 neurons with ReLU activation
-Dropout Layer – Prevents overfitting
-Dense Layer – 16 neurons with ReLU activation
-Output Layer – Softmax activation for multi-class prediction
-The model uses Sparse Categorical Cross-Entropy as the loss function.
+Architecture include Input Layer, Dense Layer(32 neurons with ReLU activation) ,Dropout Layer, Dense Layer (16 neurons with ReLU activation) and Output Layer (Softmax activation for multi-class prediction). The model uses Sparse Categorical Cross-Entropy as the loss function.
 
 8) Hyperparameter Tuning: To optimize model performance, GridSearchCV with 5-fold Stratified Cross-Validation is used.
 
