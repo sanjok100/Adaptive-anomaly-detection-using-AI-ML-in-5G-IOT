@@ -3,6 +3,11 @@ Adaptive 5G Network Intrusion Detection System (5G-NIDD)
 Project Overview:
 This project implements an adaptive anomaly detection system using a Multi-Layer Perceptron (MLP) neural network on the 5G-NIDD dataset.
 
+
+
+
+--------level 1 Binary Classification--------
+
 The system performs:
 1) Binary classification (Benign vs Attack)
 2) Feature selection using ANOVA
@@ -33,7 +38,98 @@ The goal is to build a model that can adapt to changing network traffic patterns
 10) Evaluation: The system reports Accuracy, Classification report (Precision, Recall, F1-score) and Confusion matrix (normalized and raw counts)
 
 
-Requirements: (Python 3.x,
+
+--------level 2 Multi-class Attack category Classification--------
+
+The system performs:
+1)Attack traffic filtering (9 differrent attack types are categorized into 3 different category)
+2)Feature selection using ANOVA
+3)Class balancing using oversampling and downsampling
+4)Multi-class classification using MLP
+5)Hyperparameter tuning using GridSearch + K-Fold cross-validation
+6)Model evaluation using classification metrics and confusion matrices
+The goal is to classify malicious network traffic into major attack categories, providing a middle layer between binary detection and detailed attack-type classification.
+
+Workflow Pipeline
+1) Data Preprocessing: Missing values are handled using median filling for numerical features and mode filling for categorical features.
+Categorical attributes such as protocol or connection state are converted using one-hot encoding. Binary labels are created to separate benign and attack traffic, and only attack samples are kept for this stage of the pipeline.
+
+2) Attack Type Encoding: The Attack Type column is converted into numerical labels using LabelEncoder. Individual attack types are grouped into broader categories: DoS(ICMPFlood, UDPFlood, SYNFlood, HTTPFlood), Scan(SYNScan, TCPConnectScan, UDPScan) and SlowrateDoS.
+
+3) Feature Selection: Feature importance is calculated using the ANOVA F-test. Top 10 most important features are selected. This reduces dimensionality and improves model efficiency.
+
+4) Train / Validation / Test Split: The dataset is divided into 80% Training, 10% Validation and 10% Test. Stratified sampling is applied to preserve the distribution of attack types across all datasets.
+
+5) Class Balancing: Attack categories may appear with uneven frequencies in the dataset. To prevent model bias minority classes are oversampled and each class is balanced to the same number of sample.
+
+6) Data Normalization: Feature values are standardized using StandardScaler.
+
+7) MLP Model Architecture
+The classification model is implemented using a Multi-Layer Perceptron (MLP) neural network.
+Architecture:
+Input Layer – Selected feature vector
+Dense Layer – 32 neurons with ReLU activation
+Dropout Layer – Prevents overfitting
+Dense Layer – 16 neurons with ReLU activation
+Output Layer – Softmax activation for multi-class prediction
+The model uses Sparse Categorical Cross-Entropy as the loss function.
+
+8) Hyperparameter Tuning: To optimize model performance, GridSearchCV with 5-fold Stratified Cross-Validation is used.
+
+9) Model Evaluation:The trained model is evaluated on the unseen test dataset.
+Performance metrics include: Accuracy,Precision, Recall, F1-score and two confusion matrices are generated.
+
+Objective: The purpose of this stage is to categorize malicious network traffic into broader attack groups, enabling more structured analysis of cyber threats. By grouping attacks into categories such as DoS, Scan, and SlowrateDoS, the system can better understand the general behavior of malicious traffic before performing detailed attack-type classification.
+
+
+
+
+
+
+--------level 3 Multi-class Attack type Classification--------
+
+The system performs:
+1)Attack traffic filtering ((9 differrent attack types)
+2)Feature selection using ANOVA
+3)Class balancing using oversampling and downsampling
+4)Multi-class classification using MLP
+5)Hyperparameter tuning using GridSearch + K-Fold cross-validation
+6)Model evaluation using classification metrics and confusion matrices
+The goal is to identify the exact type of network attack after traffic has already been detected as malicious.
+
+Workflow Pipeline
+1) Data Preprocessing: Missing values are handled using median filling for numerical features and mode filling for categorical features.
+Categorical attributes such as protocol or connection state are converted using one-hot encoding. Binary labels are created to separate benign and attack traffic, and only attack samples are kept for this stage of the pipeline.
+
+2) Attack Type Encoding: The Attack Type column is converted into numerical labels using LabelEncoder. Each unique attack type receives an integer label, enabling the neural network to perform multi-class classification.
+
+3) Feature Selection: Feature importance is calculated using the ANOVA F-test. Top 10 most important features are selected. This reduces dimensionality and improves model efficiency.
+
+4) Train / Validation / Test Split: The dataset is divided into 80% Training, 10% Validation and 10% Test. Stratified sampling is applied to preserve the distribution of attack types across all datasets.
+
+5) Class Balancing: Larger classes are downsampled and smaller classes are oversampled. Each attack class is adjusted to a target size of 30,000 samples.
+
+6) Data Normalization: Feature values are standardized using StandardScaler.
+
+7) MLP Model Architecture
+The classification model is implemented using a Multi-Layer Perceptron (MLP) neural network.
+Architecture:
+Input Layer – Selected feature vector
+Dense Layer – 32 neurons with ReLU activation
+Dropout Layer – Prevents overfitting
+Dense Layer – 16 neurons with ReLU activation
+Output Layer – Softmax activation for multi-class prediction
+The model uses Sparse Categorical Cross-Entropy as the loss function.
+
+8) Hyperparameter Tuning: To optimize model performance, GridSearchCV with 5-fold Stratified Cross-Validation is used.
+
+9) Model Evaluation:The trained model is evaluated on the unseen test dataset.
+Performance metrics include: Accuracy,Precision, Recall, F1-score and two confusion matrices are generated.
+
+Objective: The purpose of this stage is to provide fine-grained classification of network attacks, enabling deeper analysis of malicious activity and improving the effectiveness of anomaly detection systems.
+
+------------Requirements------------- 
+   (Python 3.x,
    TensorFlow,
    Scikit-learn (1.4.2),
    SciKeras,
