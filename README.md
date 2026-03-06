@@ -42,12 +42,19 @@ The goal is to build a model that can adapt to changing network traffic patterns
 --------level 2 Multi-class Attack category Classification--------
 
 The system performs:
+
 1)Attack traffic filtering (9 differrent attack types are categorized into 3 different category)
+
 2)Feature selection using ANOVA
+
 3)Class balancing using oversampling and downsampling
+
 4)Multi-class classification using MLP
+
 5)Hyperparameter tuning using GridSearch + K-Fold cross-validation
+
 6)Model evaluation using classification metrics and confusion matrices
+
 The goal is to classify malicious network traffic into major attack categories, providing a middle layer between binary detection and detailed attack-type classification.
 
 Workflow Pipeline
