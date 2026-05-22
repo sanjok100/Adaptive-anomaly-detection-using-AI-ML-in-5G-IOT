@@ -142,17 +142,5 @@ Execution produces:
 - Performance visualizations
 - Adaptive learning outputs
 
---------------------------------------------------
-Notes
---------------------------------------------------
-
-This implementation was developed for academic and research purposes as part of the master's thesis.
-
-Results may vary slightly due to random initialization and execution environment.
 
 
-How to Run:
-
-  Upload dataset (Combined.csv) to Google Drive: The dataset is not included in the repository due to size limitations. Please download the 5G-NIDD dataset and place Combined.csv inside your Google Drive before     running the notebook. 'https://www.kaggle.com/datasets/humera11/5g-nidd-dataset'
-  
-  Open notebook in Google Colab.
