@@ -135,10 +135,3 @@ Execution produces:
 - Confusion matrices
 - Performance visualizations
 
---------------------------------------------------
-Notes
---------------------------------------------------
-
-This implementation was developed for academic and research purposes as part of the master's thesis.
-
-Results may vary slightly due to random initialization and execution environment.
