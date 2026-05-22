@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains the source code, implementation files, and supporting materials developed for the master's thesis:
+This repository contains the source code and implementation files:
 
 **Adaptive Anomaly Detection and Prediction using Machine Learning in 5G-enabled IoT Systems**
 
